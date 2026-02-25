@@ -1,0 +1,9 @@
+streamlit
+spacy
+scikit-learn
+PyPDF2
+python-docx
+pandas
+joblib
+fpdf
+python-dotenv

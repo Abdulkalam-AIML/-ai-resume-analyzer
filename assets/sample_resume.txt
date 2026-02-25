@@ -1,0 +1,25 @@
+John Doe
+Full Stack Developer | Python Enthusiast
+Email: john.doe@example.com | GitHub: github.com/johndoe
+
+SUMMARY
+Experienced Full Stack Developer with 5+ years of experience in building scalable web applications using Python and React. Passionate about AI and Machine Learning.
+
+SKILLS
+- Languages: Python, JavaScript, SQL
+- Frameworks: Django, FastAPI, React, Node.js
+- Tools: Docker, AWS, Git, Kubernetes
+- Database: Postgres, MongoDB
+
+EXPERIENCE
+Senior Developer | Tech Solutions Inc. | 2020 - Present
+- Led a team of 5 to develop a microservices-based platform.
+- Optimized database queries, reducing latency by 40%.
+- Implemented CI/CD pipelines using Jenkins and Docker.
+
+Junior Developer | Web Crafts | 2018 - 2020
+- Built responsive user interfaces using React and Redux.
+- Assisted in the development of RESTful APIs using Node.js.
+
+EDUCATION
+B.S. in Computer Science | University of Technology | 2018

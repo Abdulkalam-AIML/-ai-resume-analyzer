@@ -1,0 +1,17 @@
+{
+  "technical_skills": [
+    "Python", "Java", "C++", "JavaScript", "TypeScript", "SQL", "HTML", "CSS",
+    "React", "Angular", "Vue.js", "Node.js", "Express", "Django", "Flask", "FastAPI",
+    "AWS", "Azure", "GCP", "Docker", "Kubernetes", "CI/CD", "Git", "Jenkins",
+    "Pandas", "NumPy", "Scikit-Learn", "TensorFlow", "PyTorch", "NLP", "Machine Learning"
+  ],
+  "soft_skills": [
+    "Leadership", "Communication", "Teamwork", "Problem Solving", "Agile", "Scrum",
+    "Project Management", "Analytical Skills", "Collaboration"
+  ],
+  "roles": {
+    "Web Developer": ["HTML", "CSS", "JavaScript", "React", "Node.js"],
+    "Data Scientist": ["Python", "Pandas", "Scikit-Learn", "Machine Learning", "SQL"],
+    "DevOps Engineer": ["Docker", "Kubernetes", "AWS", "CI/CD", "Linux"]
+  }
+}
