@@ -1,23 +1,26 @@
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask
 from flask_cors import CORS
 import os
 import io
-from utils.extractor import extract_text_from_bytes
-from utils.processor import get_skills, get_jd_match
-from utils.analyzer import predict_score, get_recommendations
-from utils.report_gen import generate_pdf_report
 
-app = Flask(__name__)
+# We need a custom template folder because we are in api/ subdirectory
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 CORS(app)
 
 # Lazy loading models in routes instead of at boot
 
 @app.route('/')
 def index():
+    from flask import render_template
     return render_template('index.html')
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
+    from flask import request, jsonify
+    from utils.extractor import extract_text_from_bytes
+    from utils.processor import get_skills, get_jd_match
+    from utils.analyzer import predict_score, get_recommendations
+    
     if 'resume' not in request.files:
         return jsonify({"error": "No resume file uploaded"}), 400
     
@@ -62,6 +65,8 @@ def analyze():
 
 @app.route('/generate-report', methods=['POST'])
 def generate_report():
+    from flask import request, jsonify, send_file
+    from utils.report_gen import generate_pdf_report
     data = request.json
     try:
         pdf_bytes = generate_pdf_report(data)
