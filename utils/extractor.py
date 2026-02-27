@@ -1,6 +1,7 @@
 import PyPDF2
 import docx
 import os
+import io
 
 def extract_text(file_path):
     """Safely extracts text from PDF or DOCX file."""
@@ -31,9 +32,8 @@ def is_resume(text):
     matches = sum(1 for kw in resume_keywords if kw in text_lower)
     return matches >= 2
 
-# Helper for Streamlit BytesIO files
-def extract_text_from_bytes(uploaded_file):
-    ext = os.path.splitext(uploaded_file.name)[1].lower()
+def extract_text_from_bytes(uploaded_file, filename):
+    ext = os.path.splitext(filename)[1].lower()
     text = ""
     try:
         if ext == '.pdf':

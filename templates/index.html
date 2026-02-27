@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline ML Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="container fade-in">
+        <header>
+            <div class="hero">
+                <h1 class="hero-text">Offline ML Resume Analyzer</h1>
+                <p>AI-Powered ATS Insights, 100% Local & Secure</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="grid">
+                <!-- Left Column: Inputs -->
+                <section class="card upload-section">
+                    <h2>📁 Upload Resume</h2>
+                    <div class="input-group">
+                        <label for="resume-upload" class="file-label">
+                            <span class="icon">📄</span>
+                            <span>Choose PDF or DOCX</span>
+                            <input type="file" id="resume-upload" accept=".pdf,.docx">
+                        </label>
+                        <p id="file-name" class="file-info">No file chosen</p>
+                    </div>
+
+                    <div class="jd-section">
+                        <h2>🎯 Job Description (Optional)</h2>
+                        <textarea id="jd-text" placeholder="Paste target JD here to check keyword matching..."></textarea>
+                    </div>
+
+                    <button id="analyze-btn" class="btn-primary">🚀 Analyze Resume</button>
+                    <div id="loader" class="loader hidden">Analyzing using Local ML Engine...</div>
+                </section>
+
+                <!-- Right Column: Dashboard -->
+                <section class="card dashboard-section">
+                    <h2>📊 Analysis Dashboard</h2>
+                    <div id="results-placeholder" class="info-box">
+                        Upload a resume and click 'Analyze' to view insights.
+                    </div>
+
+                    <div id="dashboard-content" class="hidden">
+                        <div class="metrics">
+                            <div class="metric-card">
+                                <span class="label">ATS Score</span>
+                                <div class="score-container">
+                                    <span id="ats-score" class="value">0/100</span>
+                                    <div class="progress-bar"><div id="ats-progress" class="fill"></div></div>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <span class="label">Keyword Match</span>
+                                <div class="score-container">
+                                    <span id="match-percent" class="value">0%</span>
+                                    <div class="progress-bar"><div id="match-progress" class="fill"></div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tabs">
+                            <div class="tab-header">
+                                <button class="tab-btn active" data-tab="detected-skills">✅ Detected</button>
+                                <button class="tab-btn" data-tab="missing-keywords">❌ Missing</button>
+                                <button class="tab-btn" data-tab="recommendations">💡 Tips</button>
+                            </div>
+                            <div class="tab-content">
+                                <div id="detected-skills" class="tab-pane active"></div>
+                                <div id="missing-keywords" class="tab-pane"></div>
+                                <div id="recommendations" class="tab-pane"></div>
+                            </div>
+                        </div>
+
+                        <button id="download-btn" class="btn-secondary">📥 Download Full PDF Analysis</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

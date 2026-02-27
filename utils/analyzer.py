@@ -1,7 +1,7 @@
-import streamlit as st
 import joblib
+from functools import lru_cache
 
-@st.cache_resource
+@lru_cache(maxsize=1)
 def load_ml_models():
     """Loads and caches the ML model and vectorizer for performance."""
     try:

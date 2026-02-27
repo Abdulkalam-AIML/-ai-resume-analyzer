@@ -1,4 +1,5 @@
-streamlit
+Flask
+flask-cors
 spacy
 scikit-learn
 PyPDF2

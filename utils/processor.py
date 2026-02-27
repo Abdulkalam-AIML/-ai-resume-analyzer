@@ -1,7 +1,7 @@
 import spacy
 import json
 import os
-import streamlit as st
+from functools import lru_cache
 
 # Load skills dataset
 try:
@@ -12,7 +12,7 @@ except:
     ALL_SKILLS = []
 
 # Load spaCy
-@st.cache_resource
+@lru_cache(maxsize=1)
 def load_spacy_model():
     """Loads and caches the spaCy NLP model."""
     try:
@@ -22,7 +22,6 @@ def load_spacy_model():
 
 nlp_engine = load_spacy_model()
 
-@st.cache_data
 def get_skills(text):
     """Extracts skills from text using local keyword matching and NLP."""
     if not text: return []
@@ -36,7 +35,6 @@ def get_skills(text):
             
     return sorted(list(set(found)))
 
-@st.cache_data
 def get_jd_match(resume_text, jd_text):
     """Calculates match percentage and identifies missing keywords."""
     resume_skills = set(get_skills(resume_text))
@@ -47,6 +45,6 @@ def get_jd_match(resume_text, jd_text):
         
     matched = resume_skills.intersection(jd_skills)
     missing = jd_skills - resume_skills
-    match_percent = int((len(matched) / len(jd_skills)) * 100)
+    match_percent = int((len(matched) / len(jd_skills)) * 100) if jd_skills else 0
     
     return match_percent, sorted(list(missing))
