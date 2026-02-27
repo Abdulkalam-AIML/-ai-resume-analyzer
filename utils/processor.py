@@ -4,12 +4,14 @@ import os
 from functools import lru_cache
 
 # Load skills dataset
-try:
-    with open('skills_dataset.json', 'r') as f:
-        skills_data = json.load(f)
-    ALL_SKILLS = skills_data['technical_skills'] + skills_data['soft_skills']
-except:
-    ALL_SKILLS = []
+@lru_cache(maxsize=1)
+def load_skills():
+    try:
+        with open('skills_dataset.json', 'r') as f:
+            skills_data = json.load(f)
+        return skills_data['technical_skills'] + skills_data['soft_skills']
+    except:
+        return []
 
 # Load spaCy
 @lru_cache(maxsize=1)
@@ -20,16 +22,15 @@ def load_spacy_model():
     except:
         return None
 
-nlp_engine = load_spacy_model()
-
 def get_skills(text):
     """Extracts skills from text using local keyword matching and NLP."""
     if not text: return []
+    skills_list = load_skills()
     text_lower = text.lower()
     found = []
     
     # Simple but effective keyword matching
-    for skill in ALL_SKILLS:
+    for skill in skills_list:
         if f" {skill.lower()} " in f" {text_lower} " or text_lower.startswith(f"{skill.lower()} ") or text_lower.endswith(f" {skill.lower()}"):
             found.append(skill)
             
