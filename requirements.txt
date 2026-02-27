@@ -6,4 +6,4 @@ scikit-learn
 PyPDF2
 python-docx
 joblib
-fpdf
+fpdf2
