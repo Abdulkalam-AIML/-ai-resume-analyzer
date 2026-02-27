@@ -20,9 +20,13 @@ def load_skills():
 def load_spacy_model():
     """Loads and caches the spaCy NLP model."""
     try:
+        # Try loading by name
         return spacy.load("en_core_web_sm")
-    except:
+    except Exception as e:
+        print(f"Error loading spaCy model: {e}")
         return None
+
+nlp_engine = load_spacy_model()
 
 def get_skills(text):
     """Extracts skills from text using local keyword matching and NLP."""

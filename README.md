@@ -1,57 +1,62 @@
-# 📄 Offline ML Resume Analyzer (No-API Version)
+# 📄 Offline ML Resume Analyzer
 
-A professional, fully offline ATS resume analyzer powered by **Scikit-Learn**, **spaCy**, and **Streamlit**. No external AI APIs (like Gemini or OpenAI) are required.
+A professional, fully offline ATS resume analyzer powered by **Flask**, **Scikit-Learn**, and **spaCy**. Features a premium, modern UI with 100% local processing.
 
-## 🚀 Features
-- **100% Offline**: Runs entirely on your local machine or private server.
-- **Resume Validation**: 🛡️ Built-in heuristic check ensures only resumes are processed (not random PDFs).
-- **ML-Based ATS Scoring**: Logistic Regression model for professional quality prediction.
-- **Cloud Optimized**: Pre-configured for Streamlit Cloud with memory caching.
-- **Multi-user Ready**: Safe, concurrent execution for public shared links.
-- **PDF Reports**: Export results to a professional PDF instantly.
+## 🚀 Key Features
 
----
-
-## 🛠️ Local Setup Instructions
-
-1. **Clone/Setup the project:**
-   ```bash
-   mkdir offline-resume-analyzer && cd offline-resume-analyzer
-   # (Copy the provided files into this directory)
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   python -m spacy download en_core_web_sm
-   ```
-
-3. **Initialize the ML Model:**
-   *This step generates the synthetic data and trains the local model.*
-   ```bash
-   python train_model.py
-   ```
-
-4. **Run the app:**
-   ```bash
-   streamlit run app.py
-   ```
+- **100% Offline**: Runs entirely on your local machine. No external APIs (Gemini/OpenAI) required.
+- **Privacy First**: Your resumes never leave your system.
+- **ML-Based Scoring**: Predicts ATS quality using a local Logistic Regression model.
+- **Professional Reports**: One-click PDF export for analysis results.
+- **Cross-Platform**: Designed to run on Windows, macOS, and Linux.
 
 ---
 
-## ☁️ Streamlit Cloud Deployment Guide
+## 🛠️ Setup & Execution (All Systems)
 
-1.  **GitHub**: Push your code to a GitHub repository.
-2.  **Streamlit Cloud**:
-    - Connect your repo.
-    - Set the main file to `app.py`.
-    - **Note**: The app will check for `models/ats_model.joblib`. If it's missing, ensure you've committed the `models/` folder after running `train_model.py` locally.
+### 1. Prerequisites
+Ensure you have **Python 3.9+** installed.
+
+### 2. Install Dependencies
+Open your terminal (Command Prompt/PowerShell on Windows, Terminal on Mac/Linux) and run:
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Initialize the ML Model
+Before running the app for the first time, you must train the local model:
+```bash
+python train_model.py
+```
+*This generates the synthetic training data and saves the model to the `models/` folder.*
+
+### 4. Launch the Application
+Run the Flask server:
+```bash
+python main.py
+```
+After the server starts, open your browser and navigate to:
+**[http://127.0.0.1:5001](http://127.0.0.1:5001)**
 
 ---
 
 ## 📁 Project Structure
-- `app.py`: Main dashboard UI.
-- `train_model.py`: Generates data and trains the Scikit-Learn model.
-- `utils/`: Core utilities (Extraction, NLP, ML Inference, PDF Report).
-- `models/`: Stores the trained `.joblib` model files.
-- `skills_dataset.json`: The knowledge base for local skill detection.
+
+- `main.py`: Flask web server and API.
+- `train_model.py`: Model training script.
+- `static/`: Frontend assets (CSS, JS).
+- `templates/`: HTML interface.
+- `utils/`: Core logic (Extraction, NLP, ML, PDF Reports).
+- `models/`: Trained model storage.
+
+---
+
+## ☁️ Deployment (Vercel)
+
+This project is pre-configured for Vercel. 
+1. Push your code to a GitHub repository.
+2. Link the repository to your Vercel account.
+3. Vercel will automatically detect the configuration and deploy the Flask app.
+
+> [!NOTE]
+> The app is configured to run on port **5001** locally to avoid common system conflicts on macOS. On Vercel, it will automatically use the standard web port.
