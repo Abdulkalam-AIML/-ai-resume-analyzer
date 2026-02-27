@@ -10,10 +10,7 @@ from utils.report_gen import generate_pdf_report
 app = Flask(__name__)
 CORS(app)
 
-# Ensure models exist
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if not os.path.exists(os.path.join(current_dir, 'models/ats_model.joblib')):
-    print("🚩 ML Model not found! Please run `python train_model.py` first.")
+# Lazy loading models in routes instead of at boot
 
 @app.route('/')
 def index():

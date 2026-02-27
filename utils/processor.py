@@ -26,7 +26,7 @@ def load_spacy_model():
         print(f"Error loading spaCy model: {e}")
         return None
 
-nlp_engine = load_spacy_model()
+# nlp_engine = load_spacy_model() # Removed to prevent slow cold starts
 
 def get_skills(text):
     """Extracts skills from text using local keyword matching and NLP."""
