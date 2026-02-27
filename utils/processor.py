@@ -7,7 +7,9 @@ from functools import lru_cache
 @lru_cache(maxsize=1)
 def load_skills():
     try:
-        with open('skills_dataset.json', 'r') as f:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(os.path.dirname(current_dir), 'skills_dataset.json')
+        with open(file_path, 'r') as f:
             skills_data = json.load(f)
         return skills_data['technical_skills'] + skills_data['soft_skills']
     except:

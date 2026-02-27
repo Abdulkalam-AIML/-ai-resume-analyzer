@@ -11,7 +11,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Ensure models exist
-if not os.path.exists('models/ats_model.joblib'):
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if not os.path.exists(os.path.join(current_dir, 'models/ats_model.joblib')):
     print("🚩 ML Model not found! Please run `python train_model.py` first.")
 
 @app.route('/')

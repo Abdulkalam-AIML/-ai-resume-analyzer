@@ -5,8 +5,12 @@ from functools import lru_cache
 def load_ml_models():
     """Loads and caches the ML model and vectorizer for performance."""
     try:
-        model = joblib.load('models/ats_model.joblib')
-        vectorizer = joblib.load('models/tfidf_vectorizer.joblib')
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        models_dir = os.path.join(os.path.dirname(current_dir), 'models')
+        model_path = os.path.join(models_dir, 'ats_model.joblib')
+        vectorizer_path = os.path.join(models_dir, 'tfidf_vectorizer.joblib')
+        model = joblib.load(model_path)
+        vectorizer = joblib.load(vectorizer_path)
         return model, vectorizer, ""
     except Exception as e:
         return None, None, f"Models initialization error: {str(e)}"
